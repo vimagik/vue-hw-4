@@ -24,6 +24,7 @@ const count = ref(0)
             </v-card-text>
             <v-card-actions class="d-flex align-start">
                 <v-btn color="primary" height="40" @click="$emit('buy')">Купить</v-btn>
+                <v-btn height="40" :to="`/product/${productData.id}`">Подробнее</v-btn>
             </v-card-actions>
         </v-card>
     </div>
