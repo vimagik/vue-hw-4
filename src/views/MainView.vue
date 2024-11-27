@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 
 const data = ref(null)
 const error = ref(null)
@@ -33,6 +33,11 @@ watch([searchStr, () => rangePrice.value], ([newStr, newRange]) => {
 })
 
 const dialog = ref(false)
+const userName = ref('')
+
+onMounted(() => {
+  userName.value = localStorage.getItem("user")
+})
 </script>
 
 <template>

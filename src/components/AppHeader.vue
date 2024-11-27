@@ -9,5 +9,7 @@ const searchStr = defineModel()
         <v-spacer></v-spacer>
         <v-text-field class="mt-4 mr-4" prepend-icon="mdi-magnify" density="compact" variant="outlined" max-width="300"
             v-model="searchStr"></v-text-field>
+        <v-btn to="/">Главная</v-btn>
+        <v-btn class="ml-2" to="/login">Войти</v-btn>
     </v-app-bar>
 </template>
