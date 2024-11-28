@@ -70,7 +70,7 @@ const getAmountCart = function (productId) {
       <v-col>
         <v-row class="d-flex justify-center ">
           <ProductCard class="mt-5" v-for="product in filteredData" :key="product.id" :product-data="product"
-            :shopCart="getAmountCart(product.id)" @buy="addPurchase(product.id)" />
+            :productAmount="getAmountCart(product.id)" @buy="addPurchase(product.id)" />
         </v-row>
       </v-col>
     </v-row>

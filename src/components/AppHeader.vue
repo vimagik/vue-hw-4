@@ -21,7 +21,7 @@ const productAmmount = computed(() => {
             variant="outlined" max-width="300" v-model="searchStr"></v-text-field>
         <v-btn to="/">Главная</v-btn>
         <v-btn class="ml-2" to="/login">Войти</v-btn>
-        <v-badge :content="productAmmount" :dot="productAmmount === 0" inline>
+        <v-badge v-if="route.path === '/'" :content="productAmmount" :dot="productAmmount === 0" inline>
             <v-btn color="indigo" icon="mdi-cart-variant"></v-btn>
         </v-badge>
     </v-app-bar>
