@@ -33,9 +33,6 @@ onMounted(() => {
                         <v-rating class="ml-3" readonly :length="5" :size="32" :model-value="dataProduct.rating.rate"
                             active-color="primary" half-increments />
                     </div>
-                    <div class="mt-5">
-                        <v-btn>Купить</v-btn>
-                    </div>
                 </v-col>
             </v-row>
         </template>

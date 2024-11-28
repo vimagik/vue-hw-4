@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-defineProps(['product-data'])
+defineProps(['product-data', 'shopCart'])
 
 const count = ref(0)
 </script>
@@ -23,7 +23,9 @@ const count = ref(0)
                 <p class="mt-3">{{ productData.description }}</p>
             </v-card-text>
             <v-card-actions class="d-flex align-start">
-                <v-btn color="primary" height="40" @click="$emit('buy')">Купить</v-btn>
+                <v-badge :content="shopCart" :dot="shopCart === 0">
+                    <v-btn color="primary" height="40" @click="$emit('buy')">Купить</v-btn>
+                </v-badge>
                 <v-btn height="40" :to="`/product/${productData.id}`">Подробнее</v-btn>
             </v-card-actions>
         </v-card>

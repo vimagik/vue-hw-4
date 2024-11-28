@@ -1,8 +1,15 @@
 <script setup>
+import { computed } from 'vue';
 import { useRoute } from 'vue-router'
 
 const searchStr = defineModel()
+const cart = defineModel('cart')
+
 const route = useRoute();
+
+const productAmmount = computed(() => {
+    return Object.entries(cart.value).reduce((accumulator, currentValue) => accumulator + currentValue[1].amount, 0)
+})
 </script>
 
 
@@ -14,5 +21,8 @@ const route = useRoute();
             variant="outlined" max-width="300" v-model="searchStr"></v-text-field>
         <v-btn to="/">Главная</v-btn>
         <v-btn class="ml-2" to="/login">Войти</v-btn>
+        <v-badge :content="productAmmount" :dot="productAmmount === 0" inline>
+            <v-btn color="indigo" icon="mdi-cart-variant"></v-btn>
+        </v-badge>
     </v-app-bar>
 </template>
