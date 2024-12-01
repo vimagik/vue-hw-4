@@ -1,13 +1,13 @@
 <script setup>
+import useGetProduct from '@/composables/useGetProducts';
 import { ref, watch, onMounted } from 'vue'
 
-const data = ref(null)
-const error = ref(null)
-const filteredData = ref(null)
 const searchStr = ref(null)
 const minPrice = ref(0)
 const maxPrice = ref(1000)
 const rangePrice = ref([minPrice.value, maxPrice.value])
+
+const { data, filteredData } = useGetProduct()
 
 watch([searchStr, () => rangePrice.value], ([newStr, newRange]) => {
   if (!newStr) {
@@ -23,21 +23,11 @@ watch([searchStr, () => rangePrice.value], ([newStr, newRange]) => {
 })
 
 const dialog = ref(false)
-const userName = ref('')
+const shopCart = ref({})
 
 onMounted(() => {
-  userName.value = localStorage.getItem("user")
-
-  fetch('https://fakestoreapi.com/products')
-    .then((res) => res.json())
-    .then((json) => {
-      data.value = json
-      filteredData.value = json
-    })
-    .catch((err) => (error.value = err))
+  shopCart.value = JSON.parse(localStorage.getItem('cart'))
 })
-
-const shopCart = ref({})
 
 const addPurchase = function (productId) {
   const product = data.value.find((el) => el.id === productId)

@@ -24,7 +24,8 @@ const formCard = ref(null);
 
 const formSubmit = async function () {
     const { valid } = await formCard.value.validate()
-    if (valid) {
+    if (valid && cart.value.length > 0) {
+        formForSubmit.value["order"] = cart.value
         fetch("https://httpbin.org/post", {
             method: "POST",
             body: JSON.stringify(formForSubmit.value)
@@ -33,6 +34,12 @@ const formSubmit = async function () {
 }
 
 const cart = ref([])
+
+const clearCart = function () {
+    cart.value = []
+    localStorage.setItem('cart', JSON.stringify({}))
+}
+
 
 onMounted(() => {
     const cartData = JSON.parse(localStorage.getItem('cart'))
@@ -95,6 +102,7 @@ const totalCost = computed(() => {
                             </tbody>
                         </v-table>
                         <p class="mt-3 text-subtitle-2">Итого к оплате: {{ totalCost }} тубрика</p>
+                        <v-btn class="mt-3" @click="clearCart">Очистить корзину</v-btn>
                     </v-card-text>
                 </v-card>
             </v-col>
