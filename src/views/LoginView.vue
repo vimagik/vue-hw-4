@@ -14,11 +14,12 @@ const rules = {
         'Пароль должен содержать заглавные буквы, числа и специальный символ'
 }
 
-
 const LoginSubmit = async function () {
     const { valid } = await loginForm.value.validate()
-    localStorage.setItem("user", userName.value)
-    router.push('/')
+    if (valid) {
+        localStorage.setItem("user", userName.value)
+        router.push('/')
+    }
 }
 </script>
 

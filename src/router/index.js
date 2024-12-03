@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MainView from '@/views/MainView.vue'
 import ProductView from '@/views/ProductView.vue'
 import ShoppingCartView from '@/views/ShoppingCartView.vue'
+import AddProduct from '@/views/AddProduct.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,10 +25,21 @@ const router = createRouter({
     {
       path: '/cart',
       name: 'cart',
-      component: ShoppingCartView,
-      props: { cart: false }
+      component: ShoppingCartView
+    },
+    {
+      path: '/newproduct',
+      name: 'newproduct',
+      component: AddProduct
     }
   ],
+})
+
+router.beforeEach((to, from, next) => {
+  const auth = localStorage.getItem('user')
+  if (to.name === 'newproduct' && !auth) { 
+    next({name: 'login'})
+  } else next()
 })
 
 export default router

@@ -27,7 +27,7 @@ const goToChart = function () {
         <v-text-field v-if="route.path === '/'" class="mt-4 mr-4" prepend-icon="mdi-magnify" density="compact"
             variant="outlined" max-width="300" v-model="searchStr"></v-text-field>
         <v-btn to="/">Главная</v-btn>
-        <v-btn class="ml-2" to="/login">Войти</v-btn>
+        <v-btn class="ml-2" to="/newproduct">Добавить продукт</v-btn>
         <v-badge v-if="route.path === '/'" :content="productAmmount" :dot="productAmmount === 0" inline>
             <v-btn color="indigo" icon="mdi-cart-variant" @click="goToChart"></v-btn>
         </v-badge>
